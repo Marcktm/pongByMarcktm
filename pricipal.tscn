@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://brwrskhu532ss"]
+[gd_scene load_steps=13 format=3 uid="uid://brwrskhu532ss"]
 
 [ext_resource type="Script" uid="uid://6dau5vvjpcjg" path="res://pricipal.gd" id="1_6fieg"]
 [ext_resource type="Script" uid="uid://bu3avcobv5jsl" path="res://player_1.gd" id="1_vbur7"]
 [ext_resource type="Script" uid="uid://bcb7hthkos077" path="res://pelota.gd" id="2_8wda1"]
 [ext_resource type="Texture2D" uid="uid://cox3wa8sg4kwb" path="res://pelotasPongGodot/pelota2.png" id="2_so8xp"]
 [ext_resource type="Script" uid="uid://chhuadff8x6o2" path="res://player_2.gd" id="3_uok1l"]
+[ext_resource type="AudioStream" uid="uid://cqqj0xp8p51iy" path="res://musica/8-bit-music-on-medium-245247.mp3" id="6_puqkx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_so8xp"]
 size = Vector2(1153, 43)
@@ -148,6 +149,11 @@ shape = SubResource("RectangleShape2D_uok1l")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="porteriaPlayer2"]
 position = Vector2(1161.5, 322.25)
 shape = SubResource("RectangleShape2D_uok1l")
+
+[node name="MusicaFondo" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_puqkx")
+autoplay = true
+parameters/looping = true
 
 [connection signal="body_entered" from="pelota" to="pelota" method="_on_body_entered"]
 [connection signal="body_entered" from="porteriaPlayer1" to="." method="_on_porteria_player_1_body_entered"]
