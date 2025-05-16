@@ -1,0 +1,154 @@
+[gd_scene load_steps=12 format=3 uid="uid://brwrskhu532ss"]
+
+[ext_resource type="Script" uid="uid://6dau5vvjpcjg" path="res://pricipal.gd" id="1_6fieg"]
+[ext_resource type="Script" uid="uid://bu3avcobv5jsl" path="res://player_1.gd" id="1_vbur7"]
+[ext_resource type="Script" uid="uid://bcb7hthkos077" path="res://pelota.gd" id="2_8wda1"]
+[ext_resource type="Texture2D" uid="uid://cox3wa8sg4kwb" path="res://pelotasPongGodot/pelota2.png" id="2_so8xp"]
+[ext_resource type="Script" uid="uid://chhuadff8x6o2" path="res://player_2.gd" id="3_uok1l"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_so8xp"]
+size = Vector2(1153, 43)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uok1l"]
+radius = 8.0
+height = 113.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_puqkx"]
+radius = 7.0
+height = 114.0
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6fieg"]
+friction = 0.0
+bounce = 5.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8wda1"]
+radius = 24.0832
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uok1l"]
+size = Vector2(21, 645.5)
+
+[node name="Pricipal" type="Node2D"]
+script = ExtResource("1_6fieg")
+
+[node name="Decoracion" type="Node" parent="."]
+
+[node name="Arriba" type="StaticBody2D" parent="Decoracion"]
+
+[node name="ArribaColision" type="CollisionShape2D" parent="Decoracion/Arriba"]
+position = Vector2(574.5, 19.5)
+shape = SubResource("RectangleShape2D_so8xp")
+
+[node name="colorArriba" type="ColorRect" parent="Decoracion/Arriba/ArribaColision"]
+offset_left = -575.0
+offset_top = -21.0
+offset_right = 576.0
+offset_bottom = 21.0
+color = Color(0.811765, 0.92549, 0.984314, 1)
+
+[node name="Abajo" type="StaticBody2D" parent="Decoracion"]
+position = Vector2(0, 602)
+
+[node name="AbajoColision" type="CollisionShape2D" parent="Decoracion/Abajo"]
+position = Vector2(574.5, 19.5)
+shape = SubResource("RectangleShape2D_so8xp")
+
+[node name="colorAbajao" type="ColorRect" parent="Decoracion/Abajo/AbajoColision"]
+offset_left = -575.0
+offset_top = -21.0
+offset_right = 576.0
+offset_bottom = 21.0
+color = Color(0.811765, 0.92549, 0.984314, 1)
+
+[node name="lineaMedia" type="ColorRect" parent="Decoracion"]
+offset_left = 566.0
+offset_top = 39.0
+offset_right = 585.0
+offset_bottom = 600.0
+color = Color(0.81238, 0.926447, 0.986101, 1)
+
+[node name="inicioPartida" type="ColorRect" parent="Decoracion"]
+offset_left = 558.0
+offset_top = 308.0
+offset_right = 593.0
+offset_bottom = 335.0
+
+[node name="scorePlayer1" type="Label" parent="."]
+offset_left = 467.0
+offset_top = 66.0
+offset_right = 538.0
+offset_bottom = 123.0
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="scorePlayer2" type="Label" parent="."]
+offset_left = 609.0
+offset_top = 65.0
+offset_right = 680.0
+offset_bottom = 122.0
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="player1" type="CharacterBody2D" parent="." groups=["players"]]
+position = Vector2(-5, 130)
+script = ExtResource("1_vbur7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player1"]
+position = Vector2(19, 186.5)
+shape = SubResource("CapsuleShape2D_uok1l")
+
+[node name="ColorRect" type="ColorRect" parent="player1/CollisionShape2D"]
+offset_left = -7.0
+offset_top = -56.5
+offset_right = 7.0
+offset_bottom = 56.5
+
+[node name="player2" type="CharacterBody2D" parent="." groups=["players"]]
+position = Vector2(788, 119)
+script = ExtResource("3_uok1l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player2"]
+position = Vector2(351, 209)
+shape = SubResource("CapsuleShape2D_puqkx")
+
+[node name="ColorRect" type="ColorRect" parent="player2/CollisionShape2D"]
+offset_left = -7.0
+offset_top = -56.5
+offset_right = 7.0
+offset_bottom = 56.5
+
+[node name="pelota" type="RigidBody2D" parent="." groups=["pelota"]]
+position = Vector2(262, 46)
+physics_material_override = SubResource("PhysicsMaterial_6fieg")
+gravity_scale = 0.0
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("2_8wda1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="pelota"]
+position = Vector2(313, 276)
+scale = Vector2(1, 1)
+shape = SubResource("CircleShape2D_8wda1")
+
+[node name="Sprite2D" type="Sprite2D" parent="pelota/CollisionShape2D"]
+z_index = 1
+position = Vector2(0.999993, 0.99999)
+scale = Vector2(0.0839844, 0.078125)
+texture = ExtResource("2_so8xp")
+
+[node name="porteriaPlayer1" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="porteriaPlayer1"]
+position = Vector2(-10, 320.5)
+shape = SubResource("RectangleShape2D_uok1l")
+
+[node name="porteriaPlayer2" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="porteriaPlayer2"]
+position = Vector2(1161.5, 322.25)
+shape = SubResource("RectangleShape2D_uok1l")
+
+[connection signal="body_entered" from="pelota" to="pelota" method="_on_body_entered"]
+[connection signal="body_entered" from="porteriaPlayer1" to="." method="_on_porteria_player_1_body_entered"]
+[connection signal="body_entered" from="porteriaPlayer2" to="." method="_on_porteria_player_2_body_entered"]
